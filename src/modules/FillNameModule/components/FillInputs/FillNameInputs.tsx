@@ -32,8 +32,8 @@ const FillNameInputs = () => {
         value={formData.name}
         autoComplete="off"
         autoCapitalize="off"
+        style={{ textAlign: 'center' }}
       />
-
       <Button onClick={onClickStartGame}>Play</Button>
     </Container>
   );

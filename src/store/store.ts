@@ -1,8 +1,10 @@
+import { tableReducer } from './../modules/Table/store/TableWork/tableSlice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { formSliceReducer } from '../modules/FillNameModule/store/reducers/formSlice';
 
 const rootReducer = combineReducers({
   formSliceReducer,
+  tableReducer,
 });
 
 export const setupStore = () => {
