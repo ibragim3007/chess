@@ -4,7 +4,10 @@ import TableWrapper from './TableWrapper';
 import Cell from '../Cell/Cell';
 
 const TableCells = () => {
-  const { cells } = useAppSelector(state => state.tableReducer);
+  const { cells, availableMoves } = useAppSelector(state => state.tableReducer);
+
+  console.log(availableMoves);
+
   return (
     <TableWrapper>
       {cells.map((cell, index) => {

@@ -21,10 +21,10 @@ import { preventNumberToLetterPosition } from './helpers/preventToPosition';
 export const initFigures = () => (dispath: AppDispatch) => {
   try {
     for (let i = 0; i < 8; i++)
-      dispath(tableAction.initFigure(new Pawn('pawn', { letter: preventNumberToLetterPosition(i), number: 7 }, false)));
+      dispath(tableAction.initFigure(new Pawn('Pawn', { letter: preventNumberToLetterPosition(i), number: 7 }, false)));
 
     for (let i = 0; i < 8; i++)
-      dispath(tableAction.initFigure(new Pawn('pawn', { letter: preventNumberToLetterPosition(i), number: 2 }, true)));
+      dispath(tableAction.initFigure(new Pawn('Pawn', { letter: preventNumberToLetterPosition(i), number: 2 }, true)));
 
     // Bishop
     dispath(tableAction.initFigure(new Bishop('Bishop', { letter: 'C', number: 8 }, false)));
@@ -39,10 +39,10 @@ export const initFigures = () => (dispath: AppDispatch) => {
     dispath(tableAction.initFigure(new Knight('Knight', { letter: 'G', number: 1 }, true)));
 
     // Rook
-    dispath(tableAction.initFigure(new Rook('Rook', { letter: 'A', number: 8 }, false)));
-    dispath(tableAction.initFigure(new Rook('Rook', { letter: 'H', number: 8 }, false)));
-    dispath(tableAction.initFigure(new Rook('Rook', { letter: 'A', number: 1 }, true)));
-    dispath(tableAction.initFigure(new Rook('Rook', { letter: 'H', number: 1 }, true)));
+    dispath(tableAction.initFigure(new Rook({ name: 'Rook', position: { letter: 'A', number: 8 }, isEnemy: false })));
+    dispath(tableAction.initFigure(new Rook({ name: 'Rook', position: { letter: 'H', number: 8 }, isEnemy: false })));
+    dispath(tableAction.initFigure(new Rook({ name: 'Rook', position: { letter: 'A', number: 1 }, isEnemy: true })));
+    dispath(tableAction.initFigure(new Rook({ name: 'Rook', position: { letter: 'H', number: 1 }, isEnemy: true })));
 
     //king
     dispath(tableAction.initFigure(new King('King', { letter: 'D', number: 8 }, false)));
