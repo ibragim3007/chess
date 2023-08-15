@@ -4,12 +4,14 @@ import { useAppDispatch } from '../../../../hooks/redux/reduxHooks';
 import { generateTable } from '../../store/TableWork/actions/generateTable';
 import TableCells from './TableCells';
 import UserInfo from '../Labels/UserInfo';
+import { initFigures } from '../../store/TableWork/actions/initFigures';
 
 const Table = () => {
   const dispath = useAppDispatch();
 
   useEffect(() => {
     dispath(generateTable());
+    dispath(initFigures());
   }, [dispath]);
 
   return (

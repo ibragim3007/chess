@@ -8,7 +8,7 @@ const TableCells = () => {
   return (
     <TableWrapper>
       {cells.map((cell, index) => {
-        return <Cell label={`${cell.position.number}:${cell.position.letter}`} key={index} color={cell.color} />;
+        return <Cell cell={cell} key={index} color={cell.color} />;
       })}
     </TableWrapper>
   );
