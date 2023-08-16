@@ -1,8 +1,9 @@
-import { PositionInterface } from './../interfaces/tableInterfaces';
 import { AppDispatch } from '../../../../../store/store';
 import { RootFigure } from '../interfaces/RootFigure';
 import { tableAction } from '../tableSlice';
-import { preventLetterToNumberPostion, preventNumberToLetterPosition } from './helpers/preventToPosition';
+import { PositionInterface } from './../interfaces/tableInterfaces';
+import { availablePawnToMax } from './helpers/moveFigures';
+import { preventLetterToNumberPostion } from './helpers/preventToPosition';
 
 //   1  2  3  4  5  6  7  8
 // A A1 A2 A3 A4 A5 A6 A7 A8
@@ -16,13 +17,14 @@ import { preventLetterToNumberPostion, preventNumberToLetterPosition } from './h
 
 export const calcAvailablePositionts = (pickedFigure: RootFigure) => (dispath: AppDispatch) => {
   try {
+    dispath(tableAction.activeFigure(pickedFigure));
     if (pickedFigure.name === 'Pawn') {
       const currentLetterPos = preventLetterToNumberPostion('F');
 
       if (pickedFigure.isEnemy) {
         const availablePositions: PositionInterface[] = Array.from({ length: 2 }, (elem, index) => ({
-          letter: preventNumberToLetterPosition(currentLetterPos + index + 1),
-          number: pickedFigure.position.number,
+          letter: pickedFigure.position.letter,
+          number: availablePawnToMax(pickedFigure.position.number + index + 1),
         }));
 
         dispath(tableAction.setAvailableMoves(availablePositions));
@@ -31,7 +33,7 @@ export const calcAvailablePositionts = (pickedFigure: RootFigure) => (dispath: A
       if (!pickedFigure.isEnemy) {
         const availablePositions: PositionInterface[] = Array.from({ length: 2 }, (elem, index) => ({
           letter: pickedFigure.position.letter,
-          number: pickedFigure.position.number,
+          number: availablePawnToMax(pickedFigure.position.number - index - 1),
         }));
 
         dispath(tableAction.setAvailableMoves(availablePositions));

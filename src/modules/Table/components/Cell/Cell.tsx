@@ -34,7 +34,8 @@ const Cell: React.FC<CellProps> = ({ color, label, cell }) => {
         justifyContent: 'center',
       }}
     >
-      <img src={figure?.imageUrl} />
+      {cell.isAvailableForMove && <div style={{ background: '#ef3cefdf', width: 60, height: 60 }} />}
+      <img style={{ transform: `scale(${figure?.isActiveNow ? '1.5' : '1'})` }} src={figure?.imageUrl} />
     </div>
   );
 };

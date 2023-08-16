@@ -8,6 +8,7 @@ export interface CellInterface {
   position: PositionInterface;
   currentFigure?: RootFigure;
   color: boolean;
+  isAvailableForMove?: boolean;
 }
 
 export interface PositionInterface {

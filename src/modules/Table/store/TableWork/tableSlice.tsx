@@ -27,8 +27,32 @@ export const tableSlice = createSlice({
     initFigure(state, action: PayloadAction<RootFigure>) {
       state.figures.push(action.payload);
     },
+    activeFigure(state, action: PayloadAction<RootFigure>) {
+      state.figures.map(figure => {
+        figure.disActive();
+
+        if (figure.id === action.payload.id) {
+          console.log(figure);
+          figure.makeActive();
+        }
+
+        return figure;
+      });
+    },
     setAvailableMoves(state, action: PayloadAction<PositionInterface[]>) {
       state.availableMoves = action.payload;
+
+      state.cells.map(cell => {
+        cell.isAvailableForMove = false;
+        if (
+          action.payload.find(
+            available => available.letter === cell.position.letter && available.number === cell.position.number,
+          )
+        ) {
+          cell.isAvailableForMove = true;
+        }
+        return cell;
+      });
     },
   },
 });

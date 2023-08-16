@@ -10,6 +10,7 @@ export class RootFigure {
   isAlive: boolean;
   isEnemy: boolean;
   imageUrl: string;
+  isActiveNow?: boolean;
 
   static getNextId() {
     return RootFigure.currentId++;
@@ -30,5 +31,13 @@ export class RootFigure {
 
   changePostion(newPosition: PositionInterface) {
     this.position = newPosition;
+  }
+
+  makeActive() {
+    this.isActiveNow = true;
+  }
+
+  disActive() {
+    this.isActiveNow = false;
   }
 }
