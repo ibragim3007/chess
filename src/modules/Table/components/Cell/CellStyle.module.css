@@ -1,0 +1,29 @@
+.maskCell {
+  z-index: 10;
+  width: 60px;
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.15s ease;
+}
+
+.maskCell:hover {
+  background-color: #3ba7ff82;
+}
+
+.maskInd {
+  border-radius: 10px;
+  background-color: greenyellow;
+  width: 20px;
+  height: 20px;
+
+  transition: 0.15s ease;
+}
+
+.maskCell:hover .maskInd {
+  width: 25px;
+  height: 25px;
+}

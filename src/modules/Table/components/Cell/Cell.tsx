@@ -1,8 +1,8 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux/reduxHooks';
-import { CellInterface } from '../../store/TableWork/interfaces/tableInterfaces';
 import { calcAvailablePositionts } from '../../store/TableWork/actions/calcAvailablePositionts';
-import { H1 } from '../../../../shared/Typography/H';
+import { CellInterface } from '../../store/TableWork/interfaces/tableInterfaces';
+import MaskCell from './MaskCell';
 
 interface CellProps {
   color: boolean;
@@ -34,7 +34,7 @@ const Cell: React.FC<CellProps> = ({ color, label, cell }) => {
         justifyContent: 'center',
       }}
     >
-      {cell.isAvailableForMove && <div style={{ background: '#ef3cefdf', width: 60, height: 60 }} />}
+      {cell.isAvailableForMove && <MaskCell />}
       <img style={{ transform: `scale(${figure?.isActiveNow ? '1.5' : '1'})` }} src={figure?.imageUrl} />
     </div>
   );
