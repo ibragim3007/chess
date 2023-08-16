@@ -8,6 +8,7 @@ interface InitialStateInterface {
   cells: CellInterface[];
   figures: RootFigure[];
   availableMoves: PositionInterface[];
+  currentPickedFigure?: RootFigure;
 }
 
 const initialState: InitialStateInterface = {
@@ -28,17 +29,36 @@ export const tableSlice = createSlice({
       state.figures.push(action.payload);
     },
     activeFigure(state, action: PayloadAction<RootFigure>) {
+      state.currentPickedFigure = action.payload;
       state.figures.map(figure => {
         figure.disActive();
 
         if (figure.id === action.payload.id) {
-          console.log(figure);
           figure.makeActive();
         }
-
         return figure;
       });
     },
+    moveFigureTo(state, action: PayloadAction<{ figureForMove: RootFigure; toPosition: PositionInterface }>) {
+      state.figures.map(figure => {
+        if (figure.id === action.payload.figureForMove.id) figure.changePostion(action.payload.toPosition);
+        return figure;
+      });
+    },
+
+    resetAll(state) {
+      state.currentPickedFigure = undefined;
+      state.availableMoves = [];
+      state.cells.map(cell => {
+        cell.isAvailableForMove = false;
+        return cell;
+      });
+      state.figures.map(figure => {
+        figure.disActive();
+        return figure;
+      });
+    },
+
     setAvailableMoves(state, action: PayloadAction<PositionInterface[]>) {
       state.availableMoves = action.payload;
 

@@ -3,7 +3,7 @@ import { PositionInterface } from './tableInterfaces';
 export type FIGURES_NAME_TYPES = 'Bishop' | 'King' | 'Knight' | 'Pawn' | 'Queen' | 'Rook';
 
 export class RootFigure {
-  static currentId: number;
+  static currentId = 1;
   id: number;
   name: 'Bishop' | 'King' | 'Knight' | 'Pawn' | 'Queen' | 'Rook';
   position: PositionInterface;
@@ -39,5 +39,13 @@ export class RootFigure {
 
   disActive() {
     this.isActiveNow = false;
+  }
+
+  logFigure() {
+    console.log('id: ', this.id);
+    console.log('name: ', this.name);
+    console.log('isAlive: ', this.isAlive);
+    console.log('isActiveNow: ', this.isActiveNow);
+    console.log('position: [', this.position.letter, ':', this.position.number, ']');
   }
 }
